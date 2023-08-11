@@ -1,4 +1,4 @@
-package main.java.org.example;
+package main;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,16 +23,14 @@ public class Main {
             JSONArray jsonArray = new JSONArray(data);
             for (int i=0; i < jsonArray.length(); i++){
                 total++;
-                JSONObject object = jsonArray.getJSONObject(i);
-
                 String str = jsonArray.get(i).toString();
                 JSONObject object1 = new JSONObject(str);
 
-                Boolean status = object1.getBoolean("voted_up");
+                boolean status = object1.getBoolean("voted_up");
                 String review = object1.getString("review");
 
                 if (similarities.containsKey(review.toLowerCase())) {
-                    if (status == true) positiveDups++;
+                    if (status) positiveDups++;
                     if (object1.getString("language").contains("english")) {
                         englDuplicates++;
                     } else {
